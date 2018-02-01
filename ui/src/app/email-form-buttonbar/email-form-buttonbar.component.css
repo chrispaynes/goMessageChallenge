@@ -1,0 +1,9 @@
+#email-form-buttonbar-trash {
+  background-color: white;
+  border: none;
+  float: right;
+}
+
+#email-form-buttonbar-trash img {
+  height: 35px;
+}

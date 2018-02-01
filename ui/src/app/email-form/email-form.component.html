@@ -1,0 +1,21 @@
+<div id="email-form-container" class="pad-md">
+  <div id="email-form-banner" class="pad-xs txt-white margin-bottom-xs">
+    <span>New Message</span>
+    <span id="close-icon" routerLink="/inbox">
+      <img src="/assets/x-icon.png" alt="close icon">
+    </span>
+  </div>
+  <div id="email-form-body" class="margin-bottom-md">
+    <textarea #postBody [(ngModel)]="form.Body" placeholder=""></textarea>
+  </div>
+  <div class="pad-vert-md">
+    <label for="msg">Attach an Email Message:</label>
+    <br>
+    <!-- <input type="file" name="msg" id="msg" [(ngModel)]="form.Body"><br>
+      (change)="handleFileInput($event.target.files)"> -->
+    <input type="file" id="msg" (change)="handleFileInput($event.target.files)">
+  </div>
+  <!-- {{fileToUpload.name}} -->
+  <app-email-form-buttonbar postUpload={{fileToUpload.name}} postBody={{postBody.value}}></app-email-form-buttonbar>
+</div>
+<!-- postUpload={{ fileToUpload }} -->

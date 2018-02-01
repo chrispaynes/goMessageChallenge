@@ -1,0 +1,26 @@
+<div id="app-email-details-container" *ngIf="email" class="pad-md">
+  <div class="pad-bottom-sm">
+    <span class="bold">Message-ID: </span>
+    {{ email.MessageId }}
+  </div>
+  <div class="pad-bottom-sm">
+    <span class="bold">Date: </span>
+    {{ email.Date | formatDate }}
+  </div>
+  <div class="pad-bottom-sm">
+    <span class="bold">From: </span>
+    {{ email.From }}
+  </div>
+  <div class="pad-bottom-sm">
+    <span class="bold">Subject: </span>
+    {{ email.Subject }}
+  </div>
+  <div class="pad-bottom-sm">
+    <span class="bold">To: </span>
+    {{ email.To }}
+  </div>
+  <div class="pad-top-md">
+      <div *ngIf="!isTextPlain" [innerHTML]="email.Body"></div>
+      <pre *ngIf="isTextPlain">{{email.Body}}</pre>
+  </div>
+</div>

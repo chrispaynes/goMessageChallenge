@@ -1,0 +1,26 @@
+version: '3'
+networks:
+  goMessageChallenge:
+services:
+  api:
+    networks:
+    - goMessageChallenge
+    container_name: gmc-api
+    build:
+      context: .
+      dockerfile: API-Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+  ui:
+    networks:
+    - goMessageChallenge
+    container_name: gmc-ui
+    build:
+      context: .
+      dockerfile: UI-Dockerfile
+    depends_on:
+      - api
+    restart: always
+    ports:
+      - "8080:80"

@@ -1,0 +1,28 @@
+#app-container {
+  display: flex;
+  height: 100%;
+  flex-flow: row wrap;
+}
+
+app-email-nav {
+  flex: 0 20%;
+}
+
+app-message-body {
+  width: 100%;
+  background: lightgreen;
+}
+
+app-email-form-buttonbar {
+  background: blanchedalmond;
+}
+
+router-outlet {
+  display: none;
+}
+
+app-email-top-nav-buttonbar {
+  flex: 0 100%;
+  border-bottom: solid 1px lightgray;
+}
+

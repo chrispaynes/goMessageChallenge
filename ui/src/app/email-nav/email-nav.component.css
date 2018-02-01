@@ -1,0 +1,13 @@
+#app-email-nav-container button {
+  min-width: 100px;
+  min-height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to bottom, #f5f5f5, #f1f1f1);
+  background-color: #f5f5f5;
+  border-radius: 2px;
+}
+
+#app-email-nav-container {
+  border-right: solid 1px lightgray;
+  height: 100%;
+}

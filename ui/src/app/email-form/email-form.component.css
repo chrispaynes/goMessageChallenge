@@ -1,0 +1,40 @@
+#email-form-to input {
+  width: 100%;
+}
+
+#email-form-subject input {
+  width: 100%;
+}
+
+#email-form-body {
+  border: solid 1px lightgray;
+}
+
+#email-form-body textarea {
+  width: 100%;
+  direction: ltr;
+  min-height: 600px;
+  resize: none;
+}
+
+#email-form-subject input {
+  width: 100%;
+  border-bottom: solid 1px gray;
+}
+
+#email-form-to, #email-form-subject {
+  width: 100%;
+  border-bottom: solid 1px gray;
+}
+
+#email-form-banner {
+  background-color: #404040;
+}
+
+#email-form-banner img {
+  width: 15px;
+}
+
+#close-icon {
+  float: right;
+}

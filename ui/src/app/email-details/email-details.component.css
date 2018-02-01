@@ -1,0 +1,4 @@
+#app-email-details-container pre {
+  white-space: pre-line;
+  overflow: hidden;
+}

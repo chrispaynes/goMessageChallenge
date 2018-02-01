@@ -1,0 +1,11 @@
+<div class="pad-md">
+  <h1 class="margin-bottom-md">LocalStorage JSON Emails</h1>
+  <ul id="emailList">
+    <li class="margin-bottom-sm pad-bottom-md" *ngFor="let email of emails" routerLink="/inbox/{{email.MessageId | stripMessageId}}" [class.selected]="email === selectedEmail">
+      <div class="emailFrom pad-right-md">{{ email.From }}</div>
+      <div class="emailSubject pad-right-md">{{ email.Subject }}</div>
+      <div class="emailDate">{{ email.Date | formatDate }}</div>
+    </li>
+  </ul>
+  <app-email-details [email]="selectedEmail"></app-email-details>
+</div>

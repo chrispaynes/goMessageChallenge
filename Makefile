@@ -2,7 +2,7 @@ src = ./api/pkg
 main = ./api/cmd/main.go
 pkgDir = $(src)/$(pkg)
 
-.PHONY: build coverage dockerUp fmt install start test package SQLdata unbindPort3000 unbindPort4200 ui-dev ui-prod vet
+.PHONY: build coverage dockerUp fmt goMessageChallenge install start test package unbindPort3000 unbindPort4200 ui-deps ui-dev ui-prod vet
 
 build:
 	docker-compose build
@@ -39,9 +39,6 @@ goMessageChallenge:
 install:
 	go install $(main)
 
-# install-ui-deps:
-# # 
-
 package:
 	@mkdir -p $(pkgDir)
 	@echo package $(pkg) | tee $(pkgDir)/$(pkg).go $(pkgDir)/$(pkg)_test.go
@@ -52,6 +49,11 @@ start: unbindPort3000
 
 test:
 	@go test -v $(src)/...
+
+ui-deps:
+	cd ui \
+	&& npm i \
+	&& cd ..
 
 ui-dev: unbindPort4200
 	cd ui \

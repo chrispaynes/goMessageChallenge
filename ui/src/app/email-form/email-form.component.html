@@ -11,11 +11,7 @@
   <div class="pad-vert-md">
     <label for="msg">Attach an Email Message:</label>
     <br>
-    <!-- <input type="file" name="msg" id="msg" [(ngModel)]="form.Body"><br>
-      (change)="handleFileInput($event.target.files)"> -->
     <input type="file" id="msg" (change)="handleFileInput($event.target.files)">
   </div>
-  <!-- {{fileToUpload.name}} -->
-  <app-email-form-buttonbar postUpload={{fileToUpload.name}} postBody={{postBody.value}}></app-email-form-buttonbar>
+  <app-email-form-buttonbar postUpload={{fileToUpload}} postBody={{postBody.value}}></app-email-form-buttonbar>
 </div>
-<!-- postUpload={{ fileToUpload }} -->

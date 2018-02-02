@@ -2,7 +2,7 @@ src = ./api/pkg
 main = ./api/cmd/main.go
 pkgDir = $(src)/$(pkg)
 
-.PHONY: build coverage dockerUp fmt goMessageChallenge install start test package unbindPort3000 unbindPort4200 ui-deps ui-dev ui-prod vet
+.PHONY: build coverage dockerUp fmt goMessageChallenge install start swagger-serve test package unbindPort3000 unbindPort4200 ui-deps ui-dev ui-prod vet
 
 build:
 	docker-compose build
@@ -46,6 +46,10 @@ package:
 start: unbindPort3000
 	@rm -f $(main)/main
 	go run $(main)
+
+swagger-serve:
+	cd api \
+	&& /usr/bin/swagger serve swagger.json
 
 test:
 	@go test -v $(src)/...

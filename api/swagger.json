@@ -1,0 +1,122 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "goMessageChallenge",
+    "description": "x",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/healthz": {
+      "get": {
+        "summary": "Health Check",
+        "description": "get health check for API microservice",
+        "operationId": "getHealth",
+        "produces": [
+          "text/plain"
+        ],
+        "responses": {
+          "200": {
+            "description": "Health Check response",
+            "schema": {
+              "type": "string",
+              "example": "OK"
+            }
+          }
+        }
+      }
+    },
+    "/email": {
+      "post": {
+        "description": "Parse a raw email message",
+        "operationId": "addEmail",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [{
+          "name": "",
+          "in": "body",
+          "description": "Email Message to parse",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "email message response",
+            "schema": {
+              "$ref": "#/definitions/ParsedEmail"
+            },
+            "examples": {
+              "application/json": [{
+                "Date": "Fri, 1 Apr 2011 13:02:13 +0200",
+                "From": "{CARMA TEST} Test <from@test.carmamail.com>",
+                "To": "compostmarketingab@cp.monitor1.returnpath.net",
+                "Subject": "ComHem Senaste Nyheterna",
+                "MessageId": "<58795828.1301655732499.JavaMail.compostadmin@secos-a107>",
+                "ContentType": "multipart/alternative; boundary=\"----=_Part_329666_58751540.1301655732499\"",
+                "Body": "\n* Ser brevet konstigt ut? kkkKlicka här: http://www.carmamail.com/mail/OBS?muid=13azAb223993796\n\n-----\n\n\n\n-----\n\n\n--- \n* comhem.se\n* Digital-tv: http://www.comhem.se/comhem/vara-tjanster/digitaltv/-/5620/5620/-/index.html\n* Bredband: http://www.comhem.se/comhem/vara-tjanster/bredband/-/5622/5622/-/index.html\n* Telefoni: http://www.comhem.se/comhem/vara-tjanster/telefoni/-/5624/5624/-/index.html\n* Kundservice: http://www.comhem.se/comhem/kundservice/-/3550/3550/-/index.html\n* Erbjudanden: http://www.comhem.se/comhem/vara-tjanster/combo/-/5626/5626/-/index.html\n---\n\t\n\n-----\n\n\n\n-----\n\n\n* Caption Wide Article\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lacus a eros faucibus accumsan. Morbi facilisis gravida est lacinia placerat. Etiam vel nibh ac tellus facilisis ultricies eu nec purus. In mattis libero eget lorem interdum ac dictum neque commodo. Ut nunc magna, vehicula ac pellentesque facilisis, facilisis sit amet dui. Ut ipsum lorem, consectetur quis consectetur vitae, molestie ut ipsum. Sed mollis sollicitudin laoreet.\n* Lorem ipsum: http://www.comhem.se\n\n-----\n\n\n-----\n\n* Caption Wide Article\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lacus a eros faucibus accumsan. Morbi facilisis gravida est lacinia placerat. Etiam vel nibh ac tellus facilisis ultricies eu nec purus. In mattis libero eget lorem interdum ac dictum neque commodo.\n* Lorem ipsum: http://www.comhem.se\n\n-----\n\n\n-----\n\n* Caption Narrow Article\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lacus a eros faucibus accumsan. Morbi facilisis gravida.\n* Lorem ipsum: http://www.comhem.se\n\n-----\n\n\n\n-----\n\n\n\n-----\n\n\n* Com Hem på Twitter\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n* Link w/ Arrow: http://www.comhem.se\n\n-----\n\n\n\n-----\n\n\n* Kundservice tipsar\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n* Link w/ Arrow: http://www.comhem.se\n\n-----\n\n\n\n-----\n\n\n* Com Hem tipsar\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n* Link w/ Arrow: http://www.comhem.se\n\n-----\n\n\n\n-----\n\n\n* Månadens fråga\n* Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n* Link w/ Arrow: http://www.comhem.se\n\n-----\n\n\n\n-----\n\n\n* Downloads\n\n-----\n\n\n-----\n\n* Title Row 1\n\t\t\t\t\t\t\t\t\t\tTitle Row 2\n* Spel / Genre\n* 000:-\n* Läs mer: http://downloads.comhem.se/games/\n* Köp: http://downloads.comhem.se/games/\n\n-----\n\n\n-----\n\n* Title Row 1\n\t\t\t\t\t\t\t\t\t\tTitle Row 2\n* Ljudbok / Genre\n* 000:-\n* Läs mer: http://downloads.comhem.se/audiobooks/\n* Köp: http://downloads.comhem.se/audiobooks/\n\n-----\n\n\n-----\n\n* Title Row 1\n\t\t\t\t\t\t\t\t\t\tTitle Row 2\n* Utbildning / Genre\n* 000:-\n* Läs mer: http://downloads.comhem.se/education/\n* Köp: http://downloads.comhem.se/education/\n\n-----\n\n\n\n-----\n\n\n-----\n\n* Title Row 1\n\t\t\t\t\t\t\t\t\t\tTitle Row 2\n* Spel / Genre\n* 000:-\n* Läs mer: http://downloads.comhem.se/games/\n* Köp: http://downloads.comhem.se/games/\n\n-----\n\n\n-----\n\n* Title Row 1\n\t\t\t\t\t\t\t\t\t\tTitle Row 2\n* Ljudbok / Genre\n* 000:-\n* Läs mer: http://downloads.comhem.se/audiobooks/\n* Köp: http://downloads.comhem.se/audiobooks/\n\n-----\n\n\n-----\n\n* Title Row 1\n\t\t\t\t\t\t\t\t\t\tTitle Row 2\n* Utbildning / Genre\n* 000:-\n* Läs mer: http://downloads.comhem.se/education/\n* Köp: http://downloads.comhem.se/education/\n\n-----\n\n\n\n-----\n\n\n-----\n\n* På tv i veckan\n\n-----\n\n\n-----\n\n* Title\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tDay hh:mm\n\t\t\t\t\t\t\t\t\t\t\n* Channel\n\n-----\n\n\n-----\n\n* Title\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tDay hh:mm\n\t\t\t\t\t\t\t\t\t\t\n* Channel\n\n-----\n\n\n-----\n\n* Title\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tDay hh:mm\n\t\t\t\t\t\t\t\t\t\t\n* Channel\n\n-----\n\n\n\n-----\n\n\n\n-----\n\n\n* Avsluta prenumeration: http://www.carmamail.com/Forms/Default.aspx?form=145_6367318c&amp;muid=13azAb223993796\n\n-----\n\n"
+              }]
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ParsedEmail": {
+      "type": "object",
+      "properties": {
+        "Date": {
+          "type": "string"
+        },
+        "From": {
+          "type": "string"
+        },
+        "To": {
+          "type": "string"
+        },
+        "Subject": {
+          "type": "string"
+        },
+        "MessageId": {
+          "type": "string"
+        },
+        "ContentType": {
+          "type": "string"
+        },
+        "Body": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

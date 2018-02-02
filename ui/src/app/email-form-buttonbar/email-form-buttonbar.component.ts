@@ -3,7 +3,6 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import * as objectPath from 'object-path';
 import { EmailService } from '../email.service';
-import { FileUploadService } from '../file-upload.service';
 
 @Component({
   selector: 'app-email-form-buttonbar',
@@ -21,20 +20,9 @@ export class EmailFormButtonbarComponent implements OnInit {
     private emailService: EmailService,
     private location: Location,
     private router: Router,
-    private fileUploadService: FileUploadService,
   ) { }
 
   ngOnInit() {
-  }
-
-  uploadFile(file: File) {
-    console.log('THIS UPLOAD FILE', file);
-    console.log('THIS POSTUPLOAD', this.postUpload);
-    this.fileUploadService.postFile(this.postUpload).subscribe(data => {
-      console.log('DATA', data);
-    }, error => {
-      console.log(error);
-    });
   }
 
   post(body: string): void {

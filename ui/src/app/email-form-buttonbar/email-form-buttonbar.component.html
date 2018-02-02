@@ -1,6 +1,5 @@
 <div>
-  <button class="btn btn-primary" (click)="post(postBody)">Send</button>
-  <button class="btn btn-success" (click)="uploadFile(fileToUpload)">Upload</button>
+  <button [disabled]="postBody === ''" class="btn btn-primary" (click)="post(postBody)">Send</button>
   <button id="email-form-buttonbar-trash" routerLink="/inbox">
       <img src="assets/trash.png" alt="trash icon">
   </button>

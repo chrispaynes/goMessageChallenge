@@ -36,7 +36,7 @@ func PostEmail(w http.ResponseWriter, req *http.Request) {
 	newStr := buf.String()
 
 	parsedMail := parser.ParseMail(newStr)
-	resp, _ := parser.GetMessage(parsedMail, "Date", "From", "To", "Subject", "Message-ID", "Content-Type")
+	resp, _ := parser.GetMessage(parsedMail, "Date", "From", "To", "Subject", "Message-ID", "Content-Type", "Body")
 
 	jsonBytes, err := convertMapToJSON(resp)
 
@@ -77,5 +77,5 @@ func writeJSON(w http.ResponseWriter, b []byte, err error) (int, error) {
 // GetHealth serves as a simple server health check
 func GetHealth(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(200)
-	w.Write([]byte("OKXX"))
+	w.Write([]byte("OK"))
 }

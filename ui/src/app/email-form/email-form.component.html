@@ -11,7 +11,9 @@
   <div class="pad-vert-md">
     <label for="msg">Attach an Email Message:</label>
     <br>
-    <input type="file" id="msg" (change)="handleFileInput($event.target.files)">
+    <input #fileToUpload2 type="file" id="msg" (change)="handleFileInput($event.target.files)">
   </div>
-  <app-email-form-buttonbar postUpload={{fileToUpload}} postBody={{postBody.value}}></app-email-form-buttonbar>
+  <button [disabled]="!fileToUpload" class="btn btn-danger" (click)="uploadFile(fileToUpload)">Upload</button>
+  <app-email-form-buttonbar postUpload={{fileToUpload}} postBody={{postBody.value}}>
+  </app-email-form-buttonbar>
 </div>

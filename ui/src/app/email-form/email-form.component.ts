@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Email } from '../email';
+import { FileUploadService } from '../file-upload.service';
 
 @Component({
   selector: 'app-email-form',
@@ -21,12 +22,16 @@ export class EmailFormComponent implements OnInit {
   };
 
   constructor(
+    private fileUploadService: FileUploadService,
   ) { }
 
   ngOnInit() { }
 
   handleFileInput(files: FileList) {
-    console.log('FILES', files.item(0));
     this.fileToUpload = files.item(0);
+  }
+
+  uploadFile(file: File) {
+    this.fileUploadService.postFile(file);
   }
 }

@@ -1,30 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { map } from 'rxjs/observable/of';
-
+import * as request from 'superagent';
+import { Router } from '@angular/router';
+import * as objectPath from 'object-path';
+import { EmailService } from './email.service';
 
 @Injectable()
 export class FileUploadService {
-
   constructor(
-    private http: HttpClient,
+    private router: Router,
+    private emailService: EmailService,
   ) { }
 
-  postFile(fileToUpload: File): Observable<Object> {
-    console.log('fileToUpload', fileToUpload);
-    console.log('fileToUpload.name', fileToUpload.name);
+  // postFile reads and POSTS an attached msg file to the server
+  postFile(fileToUpload: File): void {
+    const fileReader = new FileReader();
 
-    const endpoint = 'http://localhost:3000/email';
-    const formData: FormData = new FormData();
+    fileReader.onload = () => {
+      // TODO: move various service extraction methods to separate service?
+      const id = this.emailService.extractMessageId(
+        this.extractMessageIDfromBody(fileReader.result));
 
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
+      // TODO: add error handling for reading and ensure file reading is 100% done.
+      request
+        .post('http://localhost:3000/email')
+        .set('Content-Type', 'text/plain')
+        .set('Accept', 'application/json')
+        .send(fileReader.result)
+        .end(() => {
+          setTimeout(() => {
+            this.router.navigateByUrl(`/inbox/${id}`);
+          }, 2000);
+        });
+    };
 
-    console.log('FORM DATA', formData);
+    fileReader.readAsText(fileToUpload);
+  }
 
-    return this.http
-      .post(endpoint, formData);
-      // .map(() => true);
-      // .catch((e) => this.handleError(e));
+  // extractMessageIDfromBody extracts a bracketed message id from an email body
+  extractMessageIDfromBody(body: string) {
+    const regex1 = /Message-ID:\s{0,}<(\S+)>/;
+    const bracketedId = regex1.exec(body);
+    if (bracketedId === null || objectPath.get(bracketedId, '0', '') === '') {
+      return;
+    }
+    const propName = /Message-ID:\s{0,}/;
+    const id = objectPath.get(bracketedId, '0', '').replace(propName, '');
+
+    return id;
   }
 }

@@ -37,7 +37,7 @@ export class EmailService {
   // extractMessageId extracts an email's Message-ID
   // from within its opening and closing brackets
   extractMessageId(id: string) {
-    if (!Boolean(id.length) && typeof(id) === 'undefined') {
+    if (!Boolean(id.length) && typeof (id) === 'undefined') {
       return '';
     }
 
@@ -45,10 +45,18 @@ export class EmailService {
   }
 
   // postEmail POSTs an email message to the server
-  postEmail(email: string): Observable<Email>  {
+  postEmail(email: string): Observable<Email> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'text/plain',
+        'Accept': 'application/json',
+      })
+    };
+
     return this.http.post<Email>(
       'http://localhost:3000/email',
-        email,
+      email,
+      httpOptions
     );
   }
 
@@ -59,7 +67,7 @@ export class EmailService {
 
   // getInboxCounts get the number of inbox emails
   getInboxCount(): number {
-    return (typeof(EMAILS) !== 'undefined' && Array.isArray(EMAILS)) ? EMAILS.length : 0;
+    return (typeof (EMAILS) !== 'undefined' && Array.isArray(EMAILS)) ? EMAILS.length : 0;
   }
 
   // stripStyleElement strips the "<style>...</style>" element from an email body
@@ -76,6 +84,6 @@ export class EmailService {
 
   // stripDoctype strips the <!DOCTYPE ...> declaration from an email body
   stripDoctype(body: string): string {
-    return body.replace(/<!DOCTYPE[^>[]*(\[[^]]*\])?>/, '' );
+    return body.replace(/<!DOCTYPE[^>[]*(\[[^]]*\])?>/, '');
   }
 }

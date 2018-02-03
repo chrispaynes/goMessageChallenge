@@ -39,12 +39,12 @@ export class FileUploadService {
 
   // extractMessageIDfromBody extracts a bracketed message id from an email body
   extractMessageIDfromBody(body: string) {
-    const regex1 = /Message-ID:\s{0,}<(\S+)>/;
+    const regex1 = /Message-ID:\s{0,}<(\S+)>/i;
     const bracketedId = regex1.exec(body);
     if (bracketedId === null || objectPath.get(bracketedId, '0', '') === '') {
       return;
     }
-    const propName = /Message-ID:\s{0,}/;
+    const propName = /Message-ID:\s{0,}/i;
     const id = objectPath.get(bracketedId, '0', '').replace(propName, '');
 
     return id;

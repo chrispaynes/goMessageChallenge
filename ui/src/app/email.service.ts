@@ -54,7 +54,7 @@ export class EmailService {
     };
 
     return this.http.post<Email>(
-      'http://localhost:3000/email',
+      'http://api-gmc.localhost/email',
       email,
       httpOptions
     );

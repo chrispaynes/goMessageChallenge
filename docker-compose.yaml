@@ -1,26 +1,46 @@
 version: '3'
 networks:
-  goMessageChallenge:
+  proxy:
 services:
+  traefik:
+      image: traefik
+      command: --api --docker
+      networks:
+        - proxy
+      ports:
+        - "80:80"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+      labels:
+        - "traefik.backend=traefik"
+        - "traefik.frontend.rule=Host:traefik.gmc.localhost"
+        - "traefik.port=8080"
   api:
-    networks:
-    - goMessageChallenge
     container_name: gmc-api
     build:
       context: .
-      dockerfile: API-Dockerfile
-    restart: always
-    ports:
-      - "3000:3000"
-  ui:
+      dockerfile: ./docker/API-Dockerfile
     networks:
-    - goMessageChallenge
+      - proxy
+    restart: always
+    labels:
+      - "traefik.backend=api"
+      - "traefik.frontend.rule=Host:api-gmc.localhost"
+      - traefik.docker.network=proxy
+      - "traefik.port=3000"
+  ui:
     container_name: gmc-ui
     build:
       context: .
-      dockerfile: UI-Dockerfile
+      dockerfile: ./docker/UI-Dockerfile
+    networks:
+      - proxy
     depends_on:
       - api
     restart: always
-    ports:
-      - "8080:80"
+    labels:
+      - "traefik.backend=ui"
+      - "traefik.frontend.rule=Host:ui-gmc.localhost"
+      - "traefik.docker.network=proxy"
+      - "traefik.port=80"
+

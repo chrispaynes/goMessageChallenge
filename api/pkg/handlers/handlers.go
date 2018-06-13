@@ -65,6 +65,7 @@ func convertMapToJSON(resp map[string]string) ([]byte, error) {
 // writeJSON writes an email message JSON server response or an empty email message upon error
 func writeJSON(w http.ResponseWriter, b []byte, err error) (int, error) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://ui-gmc.localhost")
 
 	if err != nil {
 		emptyObj, _ := json.Marshal(EmailMessage{})
@@ -76,6 +77,7 @@ func writeJSON(w http.ResponseWriter, b []byte, err error) (int, error) {
 
 // GetHealth serves as a simple server health check
 func GetHealth(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "http://ui-gmc.localhost")
 	w.WriteHeader(200)
 	w.Write([]byte("OK"))
 }

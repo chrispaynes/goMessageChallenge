@@ -23,7 +23,7 @@ export class FileUploadService {
 
       // TODO: add error handling for reading and ensure file reading is 100% done.
       request
-        .post('http://localhost:3000/email')
+        .post('http://api-gmc.localhost/email')
         .set('Content-Type', 'text/plain')
         .set('Accept', 'application/json')
         .send(fileReader.result)

@@ -10,7 +10,7 @@ build:
 dockerUp:
 	@docker-compose down
 	@docker-compose up -d
-	@python -m webbrowser "http://localhost:8080" &> /dev/null
+	@python -m webbrowser "http://ui-gmc.localhost" &> /dev/null
 
 coverage:
 	@set -e;
